@@ -28,7 +28,7 @@ resImg = zeros([size(double(imread([SrcPath '/' imgList(1).name]))) uniqueNum]);
 weight = zeros(uniqueNum, 1); 
 
 for i = 1:num
-    curImg = double(imread([SrcPath '/' imgList(i).name]));
+    curImg = double(imread([srcPath '/' imgList(i).name]));
     ri = revIdx(i);
     w = coor(NNIndex(i),:,:) * Li(i,:,:)';
     resImg(:,:,:,ri) = resImg(:,:,:,ri) + w * curImg;
