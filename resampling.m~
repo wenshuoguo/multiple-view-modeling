@@ -1,0 +1,8 @@
+function [ResImg, Lo] = resampling(SrcPath, SrcType)
+
+%section 4.2 in the paper
+
+
+
+
+end 
