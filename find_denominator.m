@@ -32,6 +32,7 @@ end
 c = k.*(r<H);
 
 [M,I] = max(c(:));
+disp(I)
 
 de_img = imgs(:,:,:,I);
 

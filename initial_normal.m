@@ -27,8 +27,13 @@ end
 
 for i = 1:height
     for j = 1:width
-        [U,S,V] = svd(reshape(M(i,j,:,:),[uniqueNum-1,3]),0);
-        init_normals(i,j,1:3) = V(:,1);
-        init_normals_pic(i,j) = dot(reshape(init_normals(i,j,1:3),[1,3]),lightVecs(I,1:3));
+        [~,~,V] = svd(reshape(M(i,j,:,:),[uniqueNum-1,3]),0);
+        %disp(size(V))
+        %disp(V)
+        %init_normals(i,j,1:3) = V(:,3);
+        init_normals(i,j,:) = sign(V(3,3))*V(:,3); 
+        %init_normals_pic(i,j) = dot(reshape(init_normals(i,j,1:3),[1,3]),lightVecs(I,1:3));
+        init_normals_pic(i,j) = (-1/sqrt(3) * init_normals(i,j,1) + 1/sqrt(3) * init_normals(i,j,2) + 1/sqrt(3) * init_normals(i,j,3)) / 1.1;
+        %imshow((-1/sqrt(3) * InitalNorm(:,:,1) + 1/sqrt(3) * InitalNorm(:,:,2) + 1/sqrt(3) * InitalNorm(:,:,3)) / 1.1)
     end
 end
