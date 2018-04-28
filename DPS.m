@@ -10,4 +10,6 @@ type = '*.bmp';
 % Resampling
 [imgs, lightVecs] = resampling(path,type);
 
-%later steps
+
+%find denominator image
+de_img = find_denominator(imgs,0.7,0.9);
