@@ -12,4 +12,9 @@ type = '*.bmp';
 
 
 %find denominator image
-de_img = find_denominator(imgs,0.7,0.9);
+[de_img,gray_imgs,I] = find_denominator(imgs,0.7,0.9);
+
+%initial normal estimation
+[init_normals,init_normals_pic] = initial_normal(gray_imgs,I,lightVecs );
+
+

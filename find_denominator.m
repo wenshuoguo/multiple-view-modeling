@@ -1,4 +1,4 @@
-function [ de_img ] = find_denominator(imgs,L,H)
+function [ de_img,gray_imgs,I ] = find_denominator(imgs,L,H)
 [height,width,chn,uniqueNum] = size(imgs);
 
 gray_imgs = zeros(uniqueNum,height,width);
