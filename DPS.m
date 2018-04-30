@@ -17,4 +17,7 @@ type = '*.bmp';
 %initial normal estimation
 [init_normals,init_normals_pic] = initial_normal(gray_imgs,I,lightVecs );
 
+%refine normal
+
+%build 3d model
 
