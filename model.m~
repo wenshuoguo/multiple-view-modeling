@@ -1,0 +1,12 @@
+function surface = model(rNorms, texture)
+
+ [nh, nw, ~] = size(nNorms);
+ for i = 1:nh
+     for j = 1:nw
+         [n1,n2,n3] = nNorms(i,j,1:3);
+         p = -n1/n3;
+         
+
+
+
+end
