@@ -1,6 +1,6 @@
 function surface = model(rNorms, texture)
 
- %reconstruct depth surface 
+%reconstruct depth surface 
  
  [nh, nw, ~] = size(rNorms);
  slant = zeros([nh nw]);
@@ -19,13 +19,13 @@ function surface = model(rNorms, texture)
  end
  surface = shapeletsurf(slant, tilt, 6, 1, 2);
  
- %build 3d model
+%build 3d model
  
 [x, y] = meshgrid(1:nw, 1:nh);
 figure('Name','Reconstructed Model'), ...
     h = surf(x,y,surface,'FaceColor',[0.498 0.816 0.922],'FaceAlpha',0.95,'EdgeColor','none');
 
-%mapping
+%mapping with texture
 imgTexFlip = zeros(size(texture));
 for i = 1:3
     imgTexFlip(:,:,i) = flipud(texture(:,:,i));

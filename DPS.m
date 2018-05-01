@@ -20,4 +20,4 @@ type = '*.bmp';
 %refine normal
 
 %build 3d model
-
+model(refined_normals,de_img)
