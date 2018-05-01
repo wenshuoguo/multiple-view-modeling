@@ -11,7 +11,7 @@ pixels_rank = zeros(uniqueNum,height,width);
 for h = 1:height
    for w = 1:width
        [B,I] = sort(gray_imgs(:,h,w),'ascend');
-       [Lia,Locb] = ismember(gray_imgs(:,h,w),B);
+       [Lia,Locb] = ismember(gray_imgs(:,h,w),B,'rows');
        pixels_rank(:,h,w) = double(Locb/uniqueNum);
        
    end
