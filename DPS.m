@@ -17,4 +17,6 @@ type = '*.bmp';
 %initial normal estimation
 [init_normals,init_normals_pic] = initial_normal(gray_imgs,I,lightVecs );
 
+%refined normal by MRF
+[ refined_normals ] = MRF_refined( init_normals,gray_imgs,I);
 

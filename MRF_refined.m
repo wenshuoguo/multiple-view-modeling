@@ -20,7 +20,7 @@ end
 Labeling = zeros(1,NumSites);
 % get labels
 for i=1:NumSites
-    cos_similarity = coor*init_normals_reshape(i,:)';
+    cos_similarity = coor*transpose(init_normals_reshape(i,:));
     [M,I] = max(cos_similarity);
     Labeling(i) = I;
 end
