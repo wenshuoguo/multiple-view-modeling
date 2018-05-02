@@ -2,6 +2,9 @@ function [ refined_normals_reshape ] = MRF_refined( init_normals,gray_imgs,I)
 % get label set
 coor = SubdivideSphericalMesh(IcosahedronMesh, 5);
 coor = coor.X;
+
+coor = coor(coor(:,3)>0,:);
+
 [NumLabels,~]= size(coor);
 [NumImgs,height,width] = size(gray_imgs);
 NumSites = height*width;
@@ -17,24 +20,24 @@ for i=1:height
     end
 end
 
-Labeling = zeros(1,NumSites);
+% Labeling = zeros(1,NumSites);
 % get labels
-for i=1:NumSites
-    cos_similarity = coor*transpose(init_normals_reshape(i,:));
-    [M,I] = max(cos_similarity);
-    Labeling(i) = I;
-end
+% for i=1:NumSites
+%     cos_similarity = coor*transpose(init_normals_reshape(i,:));
+%     [M,I] = max(cos_similarity);
+%     Labeling(i) = I;
+% end
 %create handler
 Handle = GCO_Create(NumSites,NumLabels);
 
 %preset label
-GCO_SetLabeling(Handle,Labeling);
+%GCO_SetLabeling(Handle,Labeling);
 
 
 DataCost = zeros(NumLabels,NumSites);
 for i = 1:NumLabels
     for j = 1:NumSites
-        DataCost(i,j) = norm(coor(i,:)-init_normals_reshape(j,:));
+        DataCost(i,j) = norm(coor(i,:)-init_normals_reshape(j,:))*10000;
     end
 end
 GCO_SetDataCost(Handle,DataCost);
@@ -60,7 +63,7 @@ GCO_SetNeighbors(Handle,Weights);
 SmoothCost = zeros(NumLabels,NumLabels);
 for i=1:NumLabels
     for j=1:NumLabels
-        SmoothCost(i,j) = norm(coor(i,:)-coor(j,:));
+        SmoothCost(i,j) = norm(coor(i,:)-coor(j,:))*10000;
     end
 end
 SmoothCost = log(SmoothCost/(2*0.65*0.65)+1)*0.5;
@@ -82,6 +85,10 @@ for i=1:NumSites
     
     refined_normals_reshape(row,col,:) = refined_normals(i,:);
 end
+
+% show the refined normal with L = (-1/sqrt(3), 1/sqrt(3), 1/sqrt(3))
+figure('Name','Refined Noraml'), ...
+    imshow((-1/sqrt(3) * refined_normals_reshape(:,:,1) + 1/sqrt(3) * refined_normals_reshape(:,:,2) + 1/sqrt(3) * refined_normals_reshape(:,:,3)) / 1.1);
 
 end
 
