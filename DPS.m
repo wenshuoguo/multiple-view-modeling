@@ -4,7 +4,7 @@ addpath('lib/gco/matlab','lib/S2_Sampling_Suite/S2_Sampling_Toolbox',...
     'lib/nearestneighbour','lib/surfPeterKovesi');
 
 %GCO_UnitTest; % Get GCO lib initialized
-path = 'data/data02';
+path = 'data/data03';
 type = '*.bmp';
 
 % Resampling
@@ -21,4 +21,4 @@ type = '*.bmp';
 [ refined_normals ] = MRF_refined( init_normals,gray_imgs,I);
 
 %build 3d model
-model(refined_normals,img(:,:,:,I)/255);
+model(refined_normals,imgs(:,:,:,I)/255);
